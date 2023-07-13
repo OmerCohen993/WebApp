@@ -16,10 +16,10 @@ export class UserService {
     return this.http.get<UserModel[]>(this.url);
   }
 
-  // saveStudentData(data: any) {
-  //   // console.log(data);
-  //   return this.http.post(this.url, data);
-  // }
+  saveUserData(data: any) {
+    // console.log(data);
+    return this.http.post(this.url, data);
+  }
 
   // deleteStudent(studentId: any) {
   //   return this.http.delete(this.url + '/' + studentId);
