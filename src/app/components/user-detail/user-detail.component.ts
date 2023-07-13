@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserModel } from 'src/app/sherd/models/user.model';
 import { UserService } from 'src/app/user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class UserDetailComponent {
 
-  constructor(private userService: UserService, private router: ActivatedRoute, private route: Router) { }
+  constructor(private userService: UserService, private router: ActivatedRoute, private route: Router, private alert: ToastrService) { }
 
   userId: number;
   userHeader: any;
@@ -35,13 +36,22 @@ export class UserDetailComponent {
       });
   }
 
+
   deleteUser() {
-    if (confirm('Delete User? ')) {
-      //todo: check if id exists
-      this.userService.deleteUser(this.userId).subscribe(data => {
-        this.route.navigate(['/users']);
-      });
+    this.userId = this.router.snapshot.params.id;
+    if (confirm('Are you sure you want to delete?')) {
+      let user = this.userService.getUserById(this.userId);
+      if (!user) {
+        this.alert.error('User not found', "Error deleting user");
+      } else {
+        this.userService.deleteUser(this.userId).subscribe(data => {
+          this.alert.warning("User deleted successfully")
+          this.route.navigate(['/users']);
+        });
+      }
     }
   }
-
 }
+
+
+
