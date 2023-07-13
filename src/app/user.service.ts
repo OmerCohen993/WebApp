@@ -25,11 +25,11 @@ export class UserService {
     return this.http.delete(this.url + '/' + id);
   }
 
-  // getStudentById(studentId: any) {
-  //   return this.http.get(this.url + '/' + studentId);
-  // }
+  getUserById(id: number) {
+    return this.http.get<UserModel>(this.url + '/' + id);
+  }
 
-  // updateStudentData(studentId: any, data: any) {
-  //   return this.http.put(this.url + '/' + studentId, data);
-  // }
+  updateUser(id: number, data: any) {
+    return this.http.put(this.url + '/' + id, data);
+  }
 }

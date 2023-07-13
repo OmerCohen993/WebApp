@@ -1,1 +1,20 @@
-<p>user-detail works!</p>
+<h1>User: {{userHeader}}</h1>
+<form [formGroup]="userData">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="email" class="form-control" formControlName="userName" [readonly]="true">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-control" formControlName="email" [readonly]="true">
+    </div>
+
+    <div>
+        <button routerLink="/users/edit/{{userId}}" class="btn btn-primary">Edit</button>
+        &nbsp;&nbsp;
+        <button (click)="deleteUser()" class="btn btn-danger">Delete</button>
+    </div>
+
+
+
+</form>
