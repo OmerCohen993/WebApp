@@ -8,19 +8,19 @@
         },
         {
             "id": 2,
-            "name": "test 2",
+            "userName": "test 2",
             "email": "test2@example.com",
             "password": "12345678"
         },
         {
             "id": 3,
-            "name": "test 3",
+            "userName": "test 3",
             "email": "test3@example.com",
             "password": "12345678"
         },
         {
             "id": 4,
-            "name": "test 4",
+            "userName": "test 4",
             "email": "test4@example.com",
             "password": "12345678"
         }
