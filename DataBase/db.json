@@ -25,10 +25,16 @@
       "password": "12345678"
     },
     {
-      "userName": "test 6",
-      "email": "test 6",
-      "password": "",
+      "userName": "test 5",
+      "email": "test5@gami.com",
+      "password": "12345678",
       "id": 5
+    },
+    {
+      "userName": "12345a",
+      "email": "12345a",
+      "password": "12345a",
+      "id": 6
     }
   ]
 }

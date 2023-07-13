@@ -16,12 +16,12 @@ export class UserListComponent {
   ngOnInit() {
     this.userService.getAllUsers().subscribe(data => {
       this.usersData = data;
-      console.log(this.usersData);
     });
   }
 
   deleteUser(id: number) {
-    if (confirm('Delete Invoice? ')) {
+    if (confirm('Delete User? ')) {
+      //todo: check if id exists
       this.userService.deleteUser(id).subscribe(data => {
         this.ngOnInit();
       });

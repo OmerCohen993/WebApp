@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/sherd/models/user.model';
 import { UserService } from 'src/app/user.service';
 
@@ -11,9 +11,9 @@ import { UserService } from 'src/app/user.service';
 })
 export class UserDetailComponent {
 
-  constructor(private userService: UserService, private router: ActivatedRoute) { }
+  constructor(private userService: UserService, private router: ActivatedRoute, private route: Router) { }
 
-  userId = null;
+  userId: number;
   userHeader: any;
   userData = new FormGroup({
     userName: new FormControl(''),
@@ -23,7 +23,7 @@ export class UserDetailComponent {
 
   ngOnInit(): void {
     this.userId = this.router.snapshot.params.id;
-    this.userService.getUserById(this.router.snapshot.params.id).subscribe(
+    this.userService.getUserById(this.userId).subscribe(
       (result: any) => {
         this.userData = new FormGroup(
           {
@@ -35,6 +35,13 @@ export class UserDetailComponent {
       });
   }
 
-  deleteUser() { }
+  deleteUser() {
+    if (confirm('Delete User? ')) {
+      //todo: check if id exists
+      this.userService.deleteUser(this.userId).subscribe(data => {
+        this.route.navigate(['/users']);
+      });
+    }
+  }
 
 }

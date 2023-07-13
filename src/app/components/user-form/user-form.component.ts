@@ -34,7 +34,7 @@ export class UserFormComponent {
       this.pagetitle = "Edit User";
       this.isEdit = true;
 
-      this.userService.getUserById(this.router.snapshot.params.id).subscribe(
+      this.userService.getUserById(this.userId).subscribe(
         (result: any) => {
           this.userData = new FormGroup(
             {
@@ -48,35 +48,45 @@ export class UserFormComponent {
 
   SaveData() {
     if (!this.isEdit) {
-      this.userService.saveUserData(this.userData.value).subscribe(result => {
-        console.log(result);
-        this.userData.reset({});
-      });
+      this.createUser();
     } else {
-      if (this.iseditPassword) {
-        this.userService.getUserById(this.router.snapshot.params.id).subscribe(res => {
-          this.user = res;
-          if (this.user.password === this.oldPassword) {
-            console.log(this.user)
-            this.userData.patchValue({
-              password: this.newPassword
-            });
-            console.log(this.userData.value)
-            this.oldPassword = "";
-            this.newPassword = "";
-          }
-        });
-      }
-      this.userService.updateUser(this.router.snapshot.params.id, this.userData.value).subscribe(result => {
-        this.ngOnInit();
-      });
+      this.editUser();
     }
-
   }
 
   EditPassword() {
     this.iseditPassword = !this.iseditPassword;
     console.log(this.iseditPassword);
+  }
+
+  createUser() {
+    // todo: check if user already exists, validate email and user name
+    const newUser = Object.assign(this.userData.value);
+    this.userService.saveUserData(newUser).subscribe(result => {
+      console.log(result);
+      this.userData.reset({});
+    });
+  }
+
+  editUser() {
+    this.userId = this.router.snapshot.params.id;
+    // todo: check if user exists, validate email and user name
+    this.userService.getUserById(this.router.snapshot.params.id).subscribe(res => {
+      this.user = res;
+      if (this.user.password === this.oldPassword && this.iseditPassword == true) {
+        this.userData.patchValue({
+          password: this.newPassword
+        });
+        this.oldPassword = "";
+        this.newPassword = "";
+      }
+      // const existUser = Object.assign(this.userData.value);
+      // const existUser = Object.assign(this.userData.value);
+      this.userService.updateUser(this.router.snapshot.params.id, this.userData.value as UserModel).subscribe(result => {
+        this.EditPassword();
+        this.ngOnInit();
+      });
+    });
   }
 
 }

@@ -16,8 +16,7 @@ export class UserService {
     return this.http.get<UserModel[]>(this.url);
   }
 
-  saveUserData(data: any) {
-    // console.log(data);
+  saveUserData(data: UserModel) {
     return this.http.post(this.url, data);
   }
 
@@ -29,7 +28,7 @@ export class UserService {
     return this.http.get<UserModel>(this.url + '/' + id);
   }
 
-  updateUser(id: number, data: any) {
+  updateUser(id: number, data: UserModel) {
     return this.http.put(this.url + '/' + id, data);
   }
 }
