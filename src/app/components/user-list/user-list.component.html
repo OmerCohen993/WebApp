@@ -5,6 +5,8 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -12,7 +14,8 @@
             <th scope="row">{{item.id}}</th>
             <td>{{item.userName}}</td>
             <td>{{item.email}}</td>
-
+            <td><a routerLink="edit/{{item.id}}"> edit</a> </td>
+            <td><i (click)="deleteUser(item.id)" class="fa fa-trash">a</i></td>
         </tr>
 
     </tbody>

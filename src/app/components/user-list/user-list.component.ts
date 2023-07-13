@@ -19,4 +19,12 @@ export class UserListComponent {
       console.log(this.usersData);
     });
   }
+
+  deleteUser(id: number) {
+    if (confirm('Delete Invoice? ')) {
+      this.userService.deleteUser(id).subscribe(data => {
+        this.ngOnInit();
+      });
+    }
+  }
 }

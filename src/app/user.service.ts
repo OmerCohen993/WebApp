@@ -21,9 +21,9 @@ export class UserService {
     return this.http.post(this.url, data);
   }
 
-  // deleteStudent(studentId: any) {
-  //   return this.http.delete(this.url + '/' + studentId);
-  // }
+  deleteUser(id: number) {
+    return this.http.delete(this.url + '/' + id);
+  }
 
   // getStudentById(studentId: any) {
   //   return this.http.get(this.url + '/' + studentId);

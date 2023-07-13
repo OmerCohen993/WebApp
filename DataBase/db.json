@@ -23,18 +23,6 @@
       "userName": "test 4",
       "email": "test4@example.com",
       "password": "12345678"
-    },
-    {
-      "userName": "omer",
-      "email": "cohen@af.com",
-      "password": "1234",
-      "id": 5
-    },
-    {
-      "userName": "test 10",
-      "email": "test",
-      "password": "test",
-      "id": 6
     }
   ]
 }
